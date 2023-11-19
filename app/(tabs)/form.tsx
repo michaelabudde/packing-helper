@@ -54,11 +54,7 @@ export default function TabTwoScreen() {
     showModeEnd('date');
   };
 
-  /*
-  const showTimepicker = () => {
-    showMode('time');
-  };
-*/
+  const generateList = () => {};
 
   return (
     <View style={styles.container}>
@@ -98,6 +94,9 @@ export default function TabTwoScreen() {
             onChange={onChangeEnd}
           />
         )}
+      </View>
+      <View>
+        <Button onPress={generateList} title="Make List" />
       </View>
     </View>
   );
