@@ -9,6 +9,7 @@ import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 
 export default function TabTwoScreen() {
+  const [location, setLocation] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [startMode, setStartMode] = useState('date');
@@ -53,11 +54,7 @@ export default function TabTwoScreen() {
     showModeEnd('date');
   };
 
-  /*
-  const showTimepicker = () => {
-    showMode('time');
-  };
-*/
+  const generateList = () => {};
 
   return (
     <View style={styles.container}>
@@ -67,6 +64,10 @@ export default function TabTwoScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
+      <View>
+        <Text>Where are you going:</Text>
+        <TextInput onChangeText={setLocation} value={location} />
+      </View>
       <View>
         <Button onPress={showDatepickerStart} title="Select Start Date" />
         <Text>{startDate.toLocaleString('en-US', options)}</Text>
@@ -93,6 +94,9 @@ export default function TabTwoScreen() {
             onChange={onChangeEnd}
           />
         )}
+      </View>
+      <View>
+        <Button onPress={generateList} title="Make List" />
       </View>
     </View>
   );
