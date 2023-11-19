@@ -19,15 +19,15 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      screenOptions={{
+    /*       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-      }}
+      }} */
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'home',
+          /* tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />, */
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -45,10 +45,17 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="form"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Trip Form',
+          /* tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />, */
+        }}
+      />
+      <Tabs.Screen
+        name="list"
+        options={{
+          title: 'Packing List',
+          /* tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />, */
         }}
       />
     </Tabs>
