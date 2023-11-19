@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator, Button } from 'react-native-paper';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
@@ -7,7 +7,13 @@ import { Text, View } from '../../components/Themed';
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to your favorite Packing Helper!</Text>
+      <Text style={styles.title}>Welcome to Packing Helper!</Text>
+      <Text style={styles.body}>
+        {' '}
+        Simply enter your trip details and get a packing list generated based on
+        the weather forecast.
+      </Text>
+      <Button mode="contained">Click here to Start!</Button>
       <View
         style={styles.separator}
         lightColor="#eee"
@@ -28,6 +34,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  body: {
+    fontSize: 15,
+    fontWeight: 'normal',
   },
   separator: {
     marginVertical: 30,

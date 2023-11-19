@@ -27,7 +27,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'home',
-          /* tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />, */
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -48,14 +48,14 @@ export default function TabLayout() {
         name="form"
         options={{
           title: 'Trip Form',
-          /* tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />, */
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
       <Tabs.Screen
         name="list"
         options={{
           title: 'Packing List',
-          /* tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />, */
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
     </Tabs>
