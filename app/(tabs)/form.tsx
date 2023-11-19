@@ -23,24 +23,24 @@ export default function TabTwoScreen() {
     day: 'numeric',
   };
 
-  const onChangeStart = (event, selectedDate) => {
+  const onChangeStart = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
     setStartShow(false);
     setStartDate(currentDate);
   };
 
-  const showModeStart = (currentMode) => {
+  const showModeStart = (currentMode: any) => {
     setStartShow(true);
     setStartMode(currentMode);
   };
 
-  const onChangeEnd = (event, selectedDate) => {
+  const onChangeEnd = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
     setEndShow(false);
     setEndDate(currentDate);
   };
 
-  const showModeEnd = (currentMode) => {
+  const showModeEnd = (currentMode: any) => {
     setEndShow(true);
     setEndMode(currentMode);
   };
@@ -94,7 +94,6 @@ export default function TabTwoScreen() {
           />
         )}
       </View>
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
     </View>
   );
 }
