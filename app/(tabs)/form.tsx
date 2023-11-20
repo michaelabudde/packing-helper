@@ -3,6 +3,7 @@ import DateTimePicker, {
 } from '@react-native-community/datetimepicker';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Button } from 'react-native';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { TextInput } from 'react-native-paper';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
@@ -16,6 +17,7 @@ export default function TabTwoScreen() {
   const [endMode, setEndMode] = useState('date');
   const [startShow, setStartShow] = useState(false);
   const [endShow, setEndShow] = useState(false);
+  const apiKey = 'AIzaSyCbwvqDKWCcpI5F0YYHtqvHWAnNTqkjyCA';
 
   const options = {
     weekday: 'long',
@@ -66,7 +68,24 @@ export default function TabTwoScreen() {
       />
       <View>
         <Text>Where are you going:</Text>
-        <TextInput onChangeText={setLocation} value={location} />
+        {/*<TextInput onChangeText={setLocation} value={location} />*/}
+        <GooglePlacesAutocomplete
+          placeholder="Type a place"
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            console.log(data, details);
+            {
+              setLocation(
+                `${details.geometry.location.lat},${details.geometry.location.lng}`,
+              );
+            }
+          }}
+          query={{ key: apiKey, language: 'en' }}
+          fetchDetails
+          onFail={(error) => console.log(error)}
+          onNotFound={() => console.log('no results')}
+        />
+        <Text>Location: {location}</Text>
       </View>
       <View>
         <Button onPress={showDatepickerStart} title="Select Start Date" />
