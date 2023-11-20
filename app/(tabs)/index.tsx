@@ -1,31 +1,16 @@
-import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
 import { Link } from 'expo-router';
 import { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
 
+//import CustomFonts from '../../components/loadFonts.js'
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
+import { customFonts } from '../../components/loadFonts';
 
 export default function TabOneScreen() {
-  const [fontLoaded, setFontLoaded] = useState(false);
-  useEffect(() => {
-    async function loadFont() {
-      await Font.loadAsync({
-        'JosefinSans-Regular': require('../../assets/fonts/JosefinSans-Regular.ttf'),
-        'JosefinSans-SemiBold': require('../../assets/fonts/JosefinSans-SemiBold.ttf'),
-        'OpenSans-Regular': require('../../assets/fonts/OpenSans-Regular.ttf'),
-      });
-
-      setFontLoaded(true);
-    }
-
-    loadFont();
-  }, []);
-
-  if (!fontLoaded) {
-    return <Text>Loading...</Text>;
-  }
+  const [fontsLoaded] = useFonts(customFonts);
 
   return (
     <View style={styles.container}>
@@ -52,7 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   button: {
-    marginTop: 10,
+    marginTop: 30,
     backgroundColor: '#A2C579',
     color: '#FFFFDD',
     fontFamily: 'OpenSans-Regular',

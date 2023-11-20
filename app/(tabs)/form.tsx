@@ -1,7 +1,7 @@
 import DateTimePicker, {
   DateTimePickerAndroid,
 } from '@react-native-community/datetimepicker';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Button } from 'react-native';
 import { TextInput } from 'react-native-paper';
 
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
+    fontFamily: 'JosefinSans-Regular',
     fontSize: 20,
-    fontWeight: 'bold',
   },
   separator: {
     marginVertical: 30,
