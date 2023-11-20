@@ -61,7 +61,7 @@ export default function TabTwoScreen() {
   const generateList = () => {};
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <Text style={styles.title}>Enter Your Trip Details</Text>
       <View
         style={styles.separator}
@@ -69,9 +69,11 @@ export default function TabTwoScreen() {
         darkColor="rgba(255,255,255,0.1)"
       />
       <View>
-        <Text>Where are you going:</Text>
+        <Text style={styles.subtitle}>Where are you going:</Text>
+
         {/*<TextInput onChangeText={setLocation} value={location} />*/}
         <GooglePlacesAutocomplete
+          styles={styles.textInput}
           placeholder="Type a place"
           onPress={(data, details = null) => {
             // 'details' is provided when fetchDetails = true
@@ -87,7 +89,8 @@ export default function TabTwoScreen() {
           onFail={(error) => console.log(error)}
           onNotFound={() => console.log('no results')}
         />
-        <Text>
+        <View style={styles.separator} />
+        <Text style={styles.text}>
           Location: {location}, Latitude: {latitude}, Longitude: {longitude}
         </Text>
       </View>
@@ -112,7 +115,7 @@ export default function TabTwoScreen() {
           />
         )}
       </View>
-      <></>
+
       <View>
         <Button
           style={styles.button}
@@ -150,21 +153,20 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    
+    display: 'flex',
+    paddingLeft: 30,
+    paddingRight: 30,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  transparentBg: {
+    backgroundColor: 'transparent',
   },
   textInput: {
     backgroundColor: '#F2F2E9',
     borderRadius: 20,
-    height: 40,
-    marginBottom: 10,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  textInput: {
-    backgroundColor: '#F2F2E9',
-    borderRadius: 20,
-    height: 40,
+    height: 200,
+    marginTop: 30,
     marginBottom: 10,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -174,15 +176,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#61A3BA',
   },
-  text: {
+  subtitle: {
     fontFamily: 'OpenSans-SemiBold',
     fontSize: 16,
+    padding: 5,
+  },
+  text: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 14,
     padding: 5,
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: '90%',
   },
   button: {
     borderColor: '#A2C579',
