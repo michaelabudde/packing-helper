@@ -1,3 +1,6 @@
+import * as Font from 'expo-font';
+import { Link } from 'expo-router';
+import { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
 
@@ -5,6 +8,25 @@ import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 
 export default function TabOneScreen() {
+  const [fontLoaded, setFontLoaded] = useState(false);
+  useEffect(() => {
+    async function loadFont() {
+      await Font.loadAsync({
+        'JosefinSans-Regular': require('../../assets/fonts/JosefinSans-Regular.ttf'),
+        'JosefinSans-SemiBold': require('../../assets/fonts/JosefinSans-SemiBold.ttf'),
+        'OpenSans-Regular': require('../../assets/fonts/OpenSans-Regular.ttf'),
+      });
+
+      setFontLoaded(true);
+    }
+
+    loadFont();
+  }, []);
+
+  if (!fontLoaded) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Packing Helper!</Text>
@@ -32,8 +54,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'JosefinSans-Regular',
+    fontSize: 30,
   },
   body: {
     fontSize: 15,
