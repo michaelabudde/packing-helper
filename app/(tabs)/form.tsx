@@ -3,6 +3,7 @@ import DateTimePicker, {
 } from '@react-native-community/datetimepicker';
 import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { TextInput, Button } from 'react-native-paper';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
@@ -16,6 +17,7 @@ export default function TabTwoScreen() {
   const [endMode, setEndMode] = useState('date');
   const [startShow, setStartShow] = useState(false);
   const [endShow, setEndShow] = useState(false);
+  const apiKey = 'AIzaSyCbwvqDKWCcpI5F0YYHtqvHWAnNTqkjyCA';
 
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
@@ -65,14 +67,25 @@ export default function TabTwoScreen() {
         darkColor="rgba(255,255,255,0.1)"
       />
       <View>
-        <Text style={styles.text}>Where are you going:</Text>
-        <TextInput
-          underlineColor="transparent"
-          placeholder="Type a location"
-          style={styles.textInput}
-          onChangeText={setLocation}
-          value={location}
+        <Text>Where are you going:</Text>
+        {/*<TextInput onChangeText={setLocation} value={location} />*/}
+        <GooglePlacesAutocomplete
+          placeholder="Type a place"
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            console.log(data, details);
+            {
+              setLocation(
+                `${details.geometry.location.lat},${details.geometry.location.lng}`,
+              );
+            }
+          }}
+          query={{ key: apiKey, language: 'en' }}
+          fetchDetails
+          onFail={(error) => console.log(error)}
+          onNotFound={() => console.log('no results')}
         />
+        <Text>Location: {location}</Text>
       </View>
       <View>
         <Button
@@ -134,7 +147,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    
+  },
+  textInput: {
+    backgroundColor: '#F2F2E9',
+    borderRadius: 20,
+    height: 40,
+    marginBottom: 10,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   textInput: {
     backgroundColor: '#F2F2E9',
