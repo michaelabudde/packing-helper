@@ -7,10 +7,10 @@ import { ActivityIndicator, Button } from 'react-native-paper';
 //import CustomFonts from '../../components/loadFonts.js'
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
-import { customFonts } from '../../components/loadFonts';
+//import { customFonts } from '../../components/loadFonts';
 
 export default function TabOneScreen() {
-  const [fontsLoaded] = useFonts(customFonts);
+  //const [fontsLoaded] = useFonts(customFonts);
 
   return (
     <View style={styles.container}>
