@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 
+import { customFonts } from '../components/loadFonts';
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -25,10 +27,7 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
-  });
+  const [loaded, error] = useFonts(customFonts);
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
