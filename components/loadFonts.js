@@ -5,6 +5,7 @@ export const customFonts = {
   'JosefinSans-SemiBold': require('../assets/fonts/JosefinSans-SemiBold.ttf'),
   'JosefinSans-Bold': require('../assets/fonts/JosefinSans-Bold.ttf'),
   'OpenSans-Regular': require('../assets/fonts/OpenSans-Regular.ttf'),
+  'OpenSans-SemiBold': require('../assets/fonts/OpenSans-SemiBold.ttf'),
 };
 
 export async function LoadFonts(onLoadCallback) {

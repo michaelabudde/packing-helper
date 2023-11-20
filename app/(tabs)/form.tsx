@@ -2,8 +2,8 @@ import DateTimePicker, {
   DateTimePickerAndroid,
 } from '@react-native-community/datetimepicker';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Button } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+import { TextInput, Button } from 'react-native-paper';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
@@ -17,7 +17,7 @@ export default function TabTwoScreen() {
   const [startShow, setStartShow] = useState(false);
   const [endShow, setEndShow] = useState(false);
 
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -65,12 +65,26 @@ export default function TabTwoScreen() {
         darkColor="rgba(255,255,255,0.1)"
       />
       <View>
-        <Text>Where are you going:</Text>
-        <TextInput onChangeText={setLocation} value={location} />
+        <Text style={styles.text}>Where are you going:</Text>
+        <TextInput
+          underlineColor="transparent"
+          placeholder="Type a location"
+          style={styles.textInput}
+          onChangeText={setLocation}
+          value={location}
+        />
       </View>
       <View>
-        <Button onPress={showDatepickerStart} title="Select Start Date" />
-        <Text>{startDate.toLocaleString('en-US', options)}</Text>
+        <Button
+          style={styles.button}
+          labelStyle={styles.buttonLabel}
+          onPress={showDatepickerStart}
+        >
+          Select Start Date
+        </Button>
+        <Text style={styles.text}>
+          {startDate.toLocaleString('en-US', options)}
+        </Text>
         {startShow && (
           <DateTimePicker
             testID="dateTimePicker"
@@ -83,8 +97,16 @@ export default function TabTwoScreen() {
       </View>
       <></>
       <View>
-        <Button onPress={showDatepickerEnd} title="Select End Date" />
-        <Text>{endDate.toLocaleString('en-US', options)}</Text>
+        <Button
+          style={styles.button}
+          labelStyle={styles.buttonLabel}
+          onPress={showDatepickerEnd}
+        >
+          Select End Date
+        </Button>
+        <Text style={styles.text}>
+          {endDate.toLocaleString('en-US', options)}
+        </Text>
         {endShow && (
           <DateTimePicker
             testID="dateTimePicker"
@@ -96,7 +118,13 @@ export default function TabTwoScreen() {
         )}
       </View>
       <View>
-        <Button onPress={generateList} title="Make List" />
+        <Button
+          labelStyle={styles.filledButtonLabel}
+          style={styles.filledButton}
+          onPress={generateList}
+        >
+          Make List
+        </Button>
       </View>
     </View>
   );
@@ -108,13 +136,44 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textInput: {
+    backgroundColor: '#F2F2E9',
+    borderRadius: 20,
+    height: 40,
+    marginBottom: 10,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
   title: {
-    fontFamily: 'JosefinSans-Regular',
+    fontFamily: 'JosefinSans-Bold',
     fontSize: 20,
+    color: '#61A3BA',
+  },
+  text: {
+    fontFamily: 'OpenSans-SemiBold',
+    fontSize: 16,
+    padding: 5,
   },
   separator: {
     marginVertical: 30,
     height: 1,
     width: '80%',
+  },
+  button: {
+    borderColor: '#A2C579',
+    borderWidth: 1,
+    borderStyle: 'solid',
+  },
+  buttonLabel: {
+    fontFamily: 'OpenSans-SemiBold',
+    color: '#A2C579',
+  },
+  filledButton: {
+    backgroundColor: '#A2C579',
+    marginTop: 20,
+  },
+  filledButtonLabel: {
+    fontFamily: 'OpenSans-SemiBold',
+    color: '#FFFFDD',
   },
 });
