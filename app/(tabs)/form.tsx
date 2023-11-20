@@ -11,6 +11,8 @@ import { Text, View } from '../../components/Themed';
 
 export default function TabTwoScreen() {
   const [location, setLocation] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [startMode, setStartMode] = useState('date');
@@ -75,9 +77,9 @@ export default function TabTwoScreen() {
             // 'details' is provided when fetchDetails = true
             console.log(data, details);
             {
-              setLocation(
-                `${details.geometry.location.lat},${details.geometry.location.lng}`,
-              );
+              setLocation(data.description);
+              setLatitude(details.geometry.location.lat);
+              setLongitude(details.geometry.location.lng);
             }
           }}
           query={{ key: apiKey, language: 'en' }}
@@ -85,7 +87,9 @@ export default function TabTwoScreen() {
           onFail={(error) => console.log(error)}
           onNotFound={() => console.log('no results')}
         />
-        <Text>Location: {location}</Text>
+        <Text>
+          Location: {location}, Latitude: {latitude}, Longitude: {longitude}
+        </Text>
       </View>
       <View>
         <Button onPress={showDatepickerStart} title="Select Start Date" />
