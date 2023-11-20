@@ -1,8 +1,10 @@
+import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import ClothingCard from '../../components/ClothingCard';
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
+import { getForecast } from '../../utils/weatherApi';
 
 export default function TabTwoScreen() {
   const dummyItem = {
@@ -10,6 +12,20 @@ export default function TabTwoScreen() {
     picture: 'assets/images/briefcase.png',
     weather: 'cold',
   };
+  const temp = getForecast();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const temp = await getForecast();
+        console.log(temp);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -56,3 +72,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 });
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+/* const weatherType = useMemo(() => {
+    const tempF = temp?.temperature?.F;
+    if (tempF >= 86) {
+      return 'hot';
+    } else if (tempF >= 66 && tempF <= 85) {
+      return 'warm';
+    } else if (tempF <= 65) {
+      return 'cold';
+    }
+  }, [temp]);
+ */
+// Construct the image path based on weatherType
+/*   const temperature = parseWeatherData;
+
+  const filteredCards = clothingArr.filter((item) => {
+    return item.weather.toLowerCase() === weatherType;
+  }); */

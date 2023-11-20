@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "_id": 1,
+      "name": "Boot",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 2,
+      "name": "Cap",
+      "weather": "hot",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 3,
+      "name": "Coat",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 4,
+      "name": "Dress",
+      "weather": "hot",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 5,
+      "name": "Hoodie",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 6,
+      "name": "Jacket",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 7,
+      "name": "Jeans",
+      "weather": "warm",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 9,
+      "name": "Sandals",
+      "weather": "hot",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 10,
+      "name": "Scarf",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 11,
+      "name": "Shorts",
+      "weather": "Hot",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 12,
+      "name": "Skirt",
+      "weather": "hot",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 13,
+      "name": "Sneakers",
+      "weather": "warm",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 14,
+      "name": "Sunglasses",
+      "weather": "hot",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 15,
+      "name": "Sweatshirt",
+      "weather": "warm",
+      "imageUrl": "assets/images/briefcase.png"
+    }
+  ]
+}
