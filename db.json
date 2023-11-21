@@ -81,7 +81,7 @@
     {
       "_id": 15,
       "name": "Sweatshirt",
-      "weather": "warm",
+      "weather": "cold",
       "imageUrl": "assets/images/briefcase.png"
     }
   ]

@@ -4,28 +4,59 @@ import { StyleSheet } from 'react-native';
 import ClothingCard from '../../components/ClothingCard';
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
-import { getForecast } from '../../utils/weatherApi';
+import * as db from '../../db.json';
+import { getForecast, parseWeatherData } from '../../utils/weatherApi';
 
-export default function TabTwoScreen() {
+export default function TabThreeScreen() {
   const dummyItem = {
     name: 'T-shirt',
     picture: 'assets/images/briefcase.png',
     weather: 'cold',
   };
-  const temp = getForecast();
+
+  interface Item {
+    name: string;
+    imageUrl: string;
+    weather: string;
+  }
+
+  interface WeatherData {
+    temperature: {
+      F: number;
+    };
+    // Add any other properties you need
+  }
+
+  const [cards, setCards] = useState<Item[]>([]);
+
+  const fetchData = async () => {
+    try {
+      const weatherData: WeatherData = await getForecast();
+      const parsedWeather = parseWeatherData(weatherData);
+      console.log(parsedWeather);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const temp = await getForecast();
-        console.log(temp);
-      } catch (error) {
-        console.error('Error fetching weather data:', error);
-      }
-    };
+    const filteredCards: Item[] = db.items.filter(
+      (item) => item.weather === 'hot',
+    );
+    setCards([...filteredCards]);
 
     fetchData();
   }, []);
+
+  /*  if (temp >= 86) {
+    return 'hot';
+  } else if (tempF >= 66 && tempF <= 85) {
+    return 'warm';
+  } else if (tempF <= 65) {
+    return 'cold';
+  } */
+  console.log('here are the hot cards');
+  console.log(cards);
 
   return (
     <View style={styles.container}>
@@ -37,8 +68,9 @@ export default function TabTwoScreen() {
         darkColor="rgba(255,255,255,0.1)"
       />
       <View style={styles.cardContainer}>
-        <ClothingCard item={dummyItem} />
-        <ClothingCard item={dummyItem} />
+        {cards.map((card, index) => {
+          return <ClothingCard key={index} item={card} />;
+        })}
       </View>
     </View>
   );
@@ -72,22 +104,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 });
-
-// eslint-disable-next-line react-hooks/rules-of-hooks
-/* const weatherType = useMemo(() => {
-    const tempF = temp?.temperature?.F;
-    if (tempF >= 86) {
-      return 'hot';
-    } else if (tempF >= 66 && tempF <= 85) {
-      return 'warm';
-    } else if (tempF <= 65) {
-      return 'cold';
-    }
-  }, [temp]);
- */
-// Construct the image path based on weatherType
-/*   const temperature = parseWeatherData;
-
-  const filteredCards = clothingArr.filter((item) => {
-    return item.weather.toLowerCase() === weatherType;
-  }); */
