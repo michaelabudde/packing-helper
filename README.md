@@ -20,11 +20,10 @@ Currently the weather API only generates the current weather for the travel dest
 
 ## Images of deployed App:
 
-Home:
 ![Homepage](./assets/images/projectOne.png)
-Form:
+
 ![Form Page](./assets/images/projectTwo.png)
-Packing List:
+
 ![Your packing List](./assets/images/projectThree.png)
 
 ## Stack
