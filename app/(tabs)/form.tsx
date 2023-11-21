@@ -1,6 +1,8 @@
 import DateTimePicker, {
   DateTimePickerAndroid,
 } from '@react-native-community/datetimepicker';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Link } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -58,7 +60,14 @@ export default function TabTwoScreen() {
     showModeEnd('date');
   };
 
-  const generateList = () => {};
+  const route = useRoute();
+  const navigation = useNavigation();
+
+  const generateList = (latitude, longitude) => {
+    {
+      navigation.navigate('list', { latitude, longitude });
+    }
+  };
 
   return (
     <View style={[styles.container]}>
@@ -90,9 +99,6 @@ export default function TabTwoScreen() {
           onNotFound={() => console.log('no results')}
         />
         <View style={styles.separator} />
-        <Text style={styles.text}>
-          Location: {location}, Latitude: {latitude}, Longitude: {longitude}
-        </Text>
       </View>
       <View>
         <Button
@@ -138,13 +144,15 @@ export default function TabTwoScreen() {
         )}
       </View>
       <View>
-        <Button
-          labelStyle={styles.filledButtonLabel}
-          style={styles.filledButton}
-          onPress={generateList}
-        >
-          Make List
-        </Button>
+        <Link href="/(tabs)/list">
+          <Button
+            labelStyle={styles.filledButtonLabel}
+            style={styles.filledButton}
+            onPress={generateList(latitude, longitude)}
+          >
+            Make List
+          </Button>
+        </Link>
       </View>
     </View>
   );
