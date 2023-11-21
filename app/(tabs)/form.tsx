@@ -63,10 +63,9 @@ export default function TabTwoScreen() {
   const route = useRoute();
   const navigation = useNavigation();
 
-  const generateList = (latitude, longitude) => {
-    {
-      navigation.navigate('list', { latitude, longitude });
-    }
+  const generateList = (latitude: string, longitude: string) => {
+    const coordinates = { latitude, longitude };
+    navigation.navigate('list', { coordinates });
   };
 
   return (
@@ -164,7 +163,9 @@ export default function TabTwoScreen() {
           <Button
             labelStyle={styles.filledButtonLabel}
             style={styles.filledButton}
-            onPress={generateList(latitude, longitude)}
+            onPress={() => {
+              generateList(latitude, longitude);
+            }}
           >
             Make List
           </Button>

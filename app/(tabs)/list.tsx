@@ -1,3 +1,4 @@
+import { useRoute } from '@react-navigation/native';
 import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
@@ -9,6 +10,9 @@ import { getForecast, parseWeatherData } from '../../utils/weatherApi';
 import * as weather from '../../weather.json';
 
 export default function TabThreeScreen() {
+  const route = useRoute();
+  const { coordinates } = route.params;
+
   interface Item {
     name: string;
     imageUrl: string;
@@ -24,8 +28,8 @@ export default function TabThreeScreen() {
 
   const [cards, setCards] = useState<Item[]>([]);
   const [temperature, setTemperature] = useState('');
-  const [latitude, setLatitude] = useState(50);
-  const [longitude, setLongitude] = useState(-40);
+  const [latitude, setLatitude] = useState(coordinates.latitude);
+  const [longitude, setLongitude] = useState(coordinates.longitude);
   const fetchData = async () => {
     try {
       const weatherData: WeatherData = await getForecast(latitude, longitude);
