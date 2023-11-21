@@ -83,6 +83,78 @@
       "name": "Sweatshirt",
       "weather": "cold",
       "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 16,
+      "name": "T-Shirt",
+      "weather": "hot",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 17,
+      "name": "Tank top",
+      "weather": "hot",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 20,
+      "name": "T-Shirt",
+      "weather": "warm",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 21,
+      "name": "Beanie",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 22,
+      "name": "Jeans",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 23,
+      "name": "Gloves",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 24,
+      "name": "Socks",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 25,
+      "name": "Sweater",
+      "weather": "cold",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 26,
+      "name": "Sweater",
+      "weather": "warm",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 27,
+      "name": "Lightweight Jacket",
+      "weather": "warm",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 28,
+      "name": "Sunglasses",
+      "weather": "warm",
+      "imageUrl": "assets/images/briefcase.png"
+    },
+    {
+      "_id": 29,
+      "name": "Lightweight pants",
+      "weather": "warm",
+      "imageUrl": "assets/images/briefcase.png"
     }
   ]
 }

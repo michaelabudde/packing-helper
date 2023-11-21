@@ -6,14 +6,9 @@ import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 import * as db from '../../db.json';
 import { getForecast, parseWeatherData } from '../../utils/weatherApi';
+import * as weather from '../../weather.json';
 
 export default function TabThreeScreen() {
-  const dummyItem = {
-    name: 'T-shirt',
-    picture: 'assets/images/briefcase.png',
-    weather: 'cold',
-  };
-
   interface Item {
     name: string;
     imageUrl: string;
@@ -28,33 +23,40 @@ export default function TabThreeScreen() {
   }
 
   const [cards, setCards] = useState<Item[]>([]);
-
+  const [temperature, setTemperature] = useState('');
+  const [latitude, setLatitude] = useState(50);
+  const [longitude, setLongitude] = useState(-40);
   const fetchData = async () => {
     try {
-      const weatherData: WeatherData = await getForecast();
+      const weatherData: WeatherData = await getForecast(latitude, longitude);
       const parsedWeather = parseWeatherData(weatherData);
       console.log(parsedWeather);
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }
   };
-
+  function filterTemp(temp: number) {
+    if (temp >= 86) {
+      return 'hot';
+    } else if (temp >= 66 && temp <= 85) {
+      return 'warm';
+    } else if (temp <= 65) {
+      return 'cold';
+    }
+  }
+  const testResponse = weather;
   useEffect(() => {
+    setTemperature(weather.list[0].temp.day);
+    const tempString = filterTemp(temperature);
     const filteredCards: Item[] = db.items.filter(
-      (item) => item.weather === 'hot',
+      (item) => item.weather === tempString,
     );
     setCards([...filteredCards]);
-
+    console.log('this is the temp');
+    console.log(temperature);
     fetchData();
   }, []);
 
-  /*  if (temp >= 86) {
-    return 'hot';
-  } else if (tempF >= 66 && tempF <= 85) {
-    return 'warm';
-  } else if (tempF <= 65) {
-    return 'cold';
-  } */
   console.log('here are the hot cards');
   console.log(cards);
 
