@@ -79,25 +79,41 @@ export default function TabTwoScreen() {
       />
       <View>
         <Text style={styles.subtitle}>Where are you going:</Text>
+        <>
+          <GooglePlacesAutocomplete
+            placeholder="Type a place"
+            onPress={(data, details = null) => {
+              // 'details' is provided when fetchDetails = true
+              console.log(data, details);
+              {
+                setLocation(data.description);
+                setLatitude(details.geometry.location.lat);
+                setLongitude(details.geometry.location.lng);
+              }
+            }}
+            query={{ key: apiKey, language: 'en' }}
+            fetchDetails
+            onFail={(error) => console.log(error)}
+            onNotFound={() => console.log('no results')}
+            styles={{
+              description: {
+                fontWeight: 'bold',
+              },
+              predefinedPlacesDescription: {
+                color: '#1faadb',
+              },
+              listView: {
+                color: 'black', //To see where exactly the list is
+                zIndex: 1000, //To popover the component outwards
+                position: 'absolute',
+                top: 45,
+              },
+            }}
+          />
+        </>
 
         {/*<TextInput onChangeText={setLocation} value={location} />*/}
-        <GooglePlacesAutocomplete
-          styles={styles.textInput}
-          placeholder="Type a place"
-          onPress={(data, details = null) => {
-            // 'details' is provided when fetchDetails = true
-            console.log(data, details);
-            {
-              setLocation(data.description);
-              setLatitude(details.geometry.location.lat);
-              setLongitude(details.geometry.location.lng);
-            }
-          }}
-          query={{ key: apiKey, language: 'en' }}
-          fetchDetails
-          onFail={(error) => console.log(error)}
-          onNotFound={() => console.log('no results')}
-        />
+
         <View style={styles.separator} />
       </View>
       <View>
@@ -171,13 +187,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   textInput: {
-    backgroundColor: '#F2F2E9',
-    borderRadius: 20,
-    height: 200,
-    marginTop: 30,
-    marginBottom: 10,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    height: 40,
   },
   title: {
     fontFamily: 'JosefinSans-Bold',
