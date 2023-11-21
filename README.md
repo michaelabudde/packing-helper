@@ -24,10 +24,12 @@ npm install
 
 ## Run
 
+Before running the app, open the android Virtual Device Simulator.
+
 Start the app:
 
 ```sh
-npm start
+npm run android
 ```
 
 Lint code style:
